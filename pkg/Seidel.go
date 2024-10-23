@@ -4,7 +4,9 @@ import "math"
 
 func Seidel(A Matrix, b Matrix, eps float64) (Matrix, int) {
 	if diagonalDominance(A) == false {
-		panic("Матрица не c диаганальным преобладанием")
+		T := Transpose(A)
+		A = multiplyMatrix(T, A)
+		b = multiplyMatrix(T, b)
 	}
 	C := New(A.Rows, A.Columns, nil)
 	d := New(b.Rows, b.Columns, nil)
